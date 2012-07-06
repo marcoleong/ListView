@@ -1,3 +1,10 @@
+/**
+ * jQuery ListView plugin v1.0 beta
+ *
+ * Copyright 2012, Marco Leong
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ */
 (function(){
 	$.fn.extend({
 		listView: function() {
@@ -47,10 +54,11 @@
 
 				// add a "Parent" button.
 				$(ele).each(function(i,ele){
-					$(ele).children().first().before('<li class="parent-btn">Parent</li>');
-					var pbtn = $(ele).children().first();
+					if($(ele).data('level') !== 0) {
+						$(ele).children().first().before('<li class="parent-btn">Parent</li>');
+						var pbtn = $(ele).children().first();
 
-					if($(pbtn).parent().data('level') !== 0) {
+					
 						$(pbtn).click(function(e){
 							$(root).animate({'left':'+=100px'});
 							$(pbtn).parent().css({'z-index': '1'});
@@ -83,4 +91,4 @@
 
 		}
 	});
-})
+})(jQuery);
