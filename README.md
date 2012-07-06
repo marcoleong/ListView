@@ -7,6 +7,19 @@ This plugin script part is ready. But the css I provide is bad.
 Usage
 -----
 
+Add script
+
+```javascript
+$('.nestable-view').listView();
+```
+
+and include the library
+
+```html
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="jquery.listview.js"></script>
+```
+
 Markup
 
 ```html
@@ -44,12 +57,6 @@ Markup
 		</ul>
 	</li>
 </ul>
-```
-
-Add script
-
-```javascript
-$('.nestable-view').listView();
 ```
 
 Add style
@@ -94,3 +101,4 @@ ul.nestable-view,.nestable-view ul{
 }
 
 ```
+
