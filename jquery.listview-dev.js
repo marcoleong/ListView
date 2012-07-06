@@ -49,12 +49,16 @@
 				$(ele).each(function(i,ele){
 					$(ele).children().first().before('<li class="parent-btn">Parent</li>');
 					var pbtn = $(ele).children().first();
-					$(pbtn).click(function(e){
-						$(root).animate({'left':'+=100px'});
-						$(pbtn).parent().css({'z-index': '1'});
 
-						e.stopPropagation();
-					});
+					if($(pbtn).parent().data('level') !== 0) {
+						$(pbtn).click(function(e){
+							$(root).animate({'left':'+=100px'});
+							$(pbtn).parent().css({'z-index': '1'});
+
+							e.stopPropagation();
+						});
+					}
+					
 				});
 
 				//for each children of an ul, means the li
