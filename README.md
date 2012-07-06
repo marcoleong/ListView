@@ -4,6 +4,8 @@ jQuery ListView
 This is a jQuery plugin doing similar things as iOS ListView but with HTML tag `<ul> <li>` as the data structure.
 This plugin script part is ready. But the css I provide is bad.
 
+**[DEMO](http://marcoleong.github.com/ListView/demo.html)** here.
+
 Usage
 -----
 
