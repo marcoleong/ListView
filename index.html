@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="jQuery list view plugin : An jQuery plugin use HTML &lt;ul&gt;&lt;li&gt; do similar things as iOS List View." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>jQuery list view plugin</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/marcoleong/ListView">View on GitHub</a>
+
+          <h1 id="project_title">jQuery list view plugin</h1>
+          <h2 id="project_tagline">An jQuery plugin use HTML &lt;ul&gt;&lt;li&gt; do similar things as iOS List View.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/marcoleong/ListView/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/marcoleong/ListView/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>jQuery ListView</h1>
+
+<p>This is a jQuery plugin doing similar things as iOS ListView but with HTML tag <code>&lt;ul&gt; &lt;li&gt;</code> as the data structure.
+This plugin script part is ready. But the css I provide is bad.</p>
+
+<p><strong><a href="http://marcoleong.github.com/ListView/demo.html">DEMO</a></strong> here.</p>
+
+<h2>Usage</h2>
+
+<p>Add script</p>
+
+<div class="highlight">
+<pre><span class="nx">$</span><span class="p">(</span><span class="s1">'.nestable-view'</span><span class="p">).</span><span class="nx">listView</span><span class="p">();</span>
+</pre>
+</div>
+
+
+<p>and include the library</p>
+
+<div class="highlight">
+<pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"jquery-1.7.2.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"jquery.listview.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre>
+</div>
+
+
+<p>Markup</p>
+
+<div class="highlight">
+<pre><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"nestable-view"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+        Campus 1
+        <span class="nt">&lt;ul&gt;</span>
+            <span class="nt">&lt;li&gt;</span>Block A
+                <span class="nt">&lt;ul&gt;</span>
+                    <span class="nt">&lt;li&gt;</span>Room A1<span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li&gt;</span>Room A2/li&gt;
+                    <span class="nt">&lt;li&gt;</span>Room A3<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;/ul&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li&gt;</span>Block B
+                <span class="nt">&lt;ul&gt;</span>
+                    <span class="nt">&lt;li&gt;</span>Room B1<span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li&gt;</span>Room B2<span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li&gt;</span>Room B3<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;/ul&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+        Campus 2
+        <span class="nt">&lt;ul&gt;</span>
+            <span class="nt">&lt;li&gt;</span>Block C
+                <span class="nt">&lt;ul&gt;</span>
+                    <span class="nt">&lt;li&gt;</span>Room C1<span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li&gt;</span>Room C2<span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li&gt;</span>Room C3<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;/ul&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;li&gt;</span>Block D<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</pre>
+</div>
+
+
+<p>Add style</p>
+
+<div class="highlight">
+<pre><span class="nc">.nestable-container</span> <span class="p">{</span>
+    <span class="k">overflow</span><span class="o">:</span><span class="k">hidden</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span><span class="m">100px</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span><span class="m">300px</span><span class="p">;</span>
+    <span class="k">position</span><span class="o">:</span><span class="k">relative</span><span class="p">;</span>
+    <span class="k">z-index</span><span class="o">:</span><span class="m">0</span><span class="p">;</span>
+    <span class="k">background-color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="k">border</span><span class="o">:</span><span class="m">1px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+
+<span class="p">}</span>
+<span class="nc">.nestable-view</span> <span class="p">{</span>
+    <span class="c">/*overflow:hidden;*/</span>
+    <span class="k">width</span><span class="o">:</span><span class="m">99px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.nestable-view</span> <span class="nt">ul</span><span class="p">{</span>
+    <span class="k">display</span><span class="o">:</span><span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+    <span class="k">left</span><span class="o">:</span><span class="m">0px</span><span class="p">;</span>
+    <span class="k">top</span><span class="o">:</span><span class="m">0px</span><span class="p">;</span>
+    <span class="k">background-color</span><span class="o">:</span><span class="nb">white</span><span class="p">;</span>
+    <span class="k">width</span><span class="o">:</span><span class="m">100px</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span><span class="m">300px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">ul</span><span class="nc">.nestable-view</span><span class="o">,</span><span class="nc">.nestable-view</span> <span class="nt">ul</span><span class="p">{</span>
+    <span class="k">position</span><span class="o">:</span><span class="k">absolute</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span><span class="m">0</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span><span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.nestable-view</span> <span class="nt">li</span> <span class="p">{</span>
+    <span class="k">list-style</span><span class="o">:</span><span class="k">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.nestable-view</span> <span class="nt">li</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="k">background-color</span><span class="o">:</span> <span class="nb">yellow</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre>
+</div>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">jQuery list view plugin maintained by <a href="https://github.com/marcoleong">marcoleong</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
