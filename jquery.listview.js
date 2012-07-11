@@ -5,43 +5,95 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  */
+
+
 (function(){
 	$.fn.extend({
+		settings: {
+			"selectedFieldName": "parent"
+		},
+
 		listView: function() {
-			//putting add left property for all ul
-			//when an children li is clicked, left -=100px, animated
 			this.initialize();
 		},
 
-		initialize: function(){
+		initialize: function(options){
+
+			jQuery.extend(this.settings, options);
+
 			$(this).wrap('<div class="nestable-container"></div>');
 			//initialize left property
 			$(this).addClass('nestable-view');
+
+			$(this).before('<input style="width:100%;"type="text" id="listview-search-field" />');
+			$(this).after('<input type="hidden" name="'+this.settings.selectedFieldName+'" value="" id="listview-selected-hidden-field" />');
+
+			var _this = this;
+			$("#listview-search-field").keyup(function(event){
+				if (event.which == 13) {
+					event.preventDefault();
+				}
+
+				// if($('#listview-search-field').val() === ' '){
+				// 	$('.nestable-view').show();
+				// 	$('#listview-search-results').remove();
+				// }
+				var results = _this.findNode($(this).val());
+				// console.log(results);
+
+				$('.nestable-view').hide();
+				// $(this).
+				if($('#listview-search-results').length < 1){
+					$(this).after('<ul id="listview-search-results"></ul>');
+				}
+
+				var resultsItem = $.map(results, function(item){
+					return "<li>"+item+"</li>";
+				});
+				// console.log(resultsItem);
+				$("#listview-search-results").html('');
+				$.each(resultsItem, function(i,el){
+					$("#listview-search-results").append(el);
+				});
+				$("#listview-search-results > li").each(function(i,el){
+					$(el).click(function(e){
+						var value = _this.getTextInNode(el);
+						$("#listview-selected-hidden-field").val(value);
+						e.preventDefault();
+					});
+				});
+			});
+
 			var lvl = 0;
-			this.addLeftProperty($(this), lvl);
+			this.addProperty($(this), lvl);
 
 			this.bindClickEvents($(this));
+
+			//TESTING AREA
+			// this.findNode('Room');
 		},
 
-		addLeftProperty: function(ele,lvl){
+		addProperty: function(ele,lvl){
 
+
+			var _this = this;
 			//check if it have element to work with
 			if(ele.length > 0){
 				ele.each(function(i,ele){
-					// li
+					// ul
 					$(ele).attr('data-level', lvl);
 				});
 
 				// all left except the first layer.
 				if(lvl !== 0){
-					$(ele).css({'left':'100px'});
+					$(ele).css({'left':'100%'});
 				}else{
 					$(ele).css({'left':'0px'});
 				}
 				lvl += 1;
-
+				this.deepness = lvl;
 				// recursively add for every ul element
-				this.addLeftProperty($(ele).children().children(),lvl);
+				this.addProperty($(ele).children().children(),lvl);
 			}else{
 				return false;
 			}
@@ -60,7 +112,7 @@
 
 					
 						$(pbtn).click(function(e){
-							$(root).animate({'left':'+=100px'});
+							$(root).animate({'left':'+=100%'});
 							$(pbtn).parent().css({'z-index': '1'});
 
 							e.stopPropagation();
@@ -68,19 +120,32 @@
 					}
 					
 				});
-
+				var _this = this;
 				//for each children of an ul, means the li
 				$(ele).children().each(function(i,ele){
-
 					$(ele).click(function(e){
-						if($(ele).children().length > 0 && !$(ele).is('.parent-btn') ){
-							$(root).animate({'left':'-=100px'});
-							$(ele).children().css({'z-index':'1'});
-							$(ele).siblings().children().css({'z-index':'-1'});
+						if($(ele).children().children().length > 0 && !$(ele).is('.parent-btn') ){
+							
+							var value = _this.getTextInNode(ele);
+							$("#listview-selected-hidden-field").val(value);
 						}
 						e.stopPropagation();
 					});
 
+					if( !$(ele).is('.parent-btn') ){
+						//use the arrow button to navigate
+						if($(ele).children().length > 0 ){
+							$(ele).append("<i class='icon-chevron-right'></i>");
+						}
+
+						$(ele).children('i').click(function(){
+							if($(ele).children().children().length > 0 ){
+								$(root).animate({'left':'-=100%'});
+								$(ele).children().css({'z-index':'1'});
+								$(ele).siblings().children().css({'z-index':'-1'});
+							}
+						});
+					}
 				});
 
 				// recursively bind click event.
@@ -88,7 +153,22 @@
 			}else{
 				return false;
 			}
+		},
 
+		showNode: function(nodes){
+			
+		},
+
+		findNode: function(value){
+			var items = $(this).find("ul > li:contains('"+value+"')").not(".parent-btn").not('ul');
+			var _this = this;
+			var nodes_value = $.map($(items), function(item){
+				return _this.getTextInNode(item);
+			});
+			return nodes_value;
+		},
+		getTextInNode : function(elem) {
+			return $.trim(elem.firstChild.nodeValue);
 		}
-	});
+    });
 })(jQuery);
