@@ -10,7 +10,7 @@
 (function(){
 	$.fn.extend({
 		settings: {
-			"selectedFieldName": "parent"
+			"formHiddenInputField" : '<input type="hidden" name="parent" value="" id="listview-selected-hidden-field" />'
 		},
 
 		listView: function() {
@@ -26,18 +26,13 @@
 			$(this).addClass('nestable-view');
 
 			$(this).before('<input style="width:100%;"type="text" id="listview-search-field" />');
-			$(this).after('<input type="hidden" name="'+this.settings.selectedFieldName+'" value="" id="listview-selected-hidden-field" />');
+			$(this).after(this.settings.formHiddenInputField);
 
 			var _this = this;
 			$("#listview-search-field").keyup(function(event){
 				if (event.which == 13) {
 					event.preventDefault();
 				}
-
-				// if($('#listview-search-field').val() === ' '){
-				// 	$('.nestable-view').show();
-				// 	$('#listview-search-results').remove();
-				// }
 				var results = _this.findNode($(this).val());
 				// console.log(results);
 
@@ -68,9 +63,6 @@
 			this.addProperty($(this), lvl);
 
 			this.bindClickEvents($(this));
-
-			//TESTING AREA
-			// this.findNode('Room');
 		},
 
 		addProperty: function(ele,lvl){
@@ -135,7 +127,7 @@
 					if( !$(ele).is('.parent-btn') ){
 						//use the arrow button to navigate
 						if($(ele).children().length > 0 ){
-							$(ele).append("<i class='icon-chevron-right'></i>");
+							$(ele).append("<i class='icon-chevron-right icon-white'></i>");
 						}
 
 						$(ele).children('i').click(function(){
