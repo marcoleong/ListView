@@ -66,17 +66,13 @@ Add style
 ```css
 .nestable-container {
 	overflow:hidden;
-	width:100px;
+	width:200px;
 	height:300px;
 	position:relative;
 	z-index:0;
-	background-color: white;
-	border:1px solid black;
-
 }
 .nestable-view {
-	/*overflow:hidden;*/
-	width:99px;
+	width:200px;
 }
 
 .nestable-view ul{
@@ -84,7 +80,7 @@ Add style
 	left:0px;
 	top:0px;
 	background-color:white;
-	width:100px;
+	width:200px;
 	height:300px;
 }
 
@@ -96,11 +92,10 @@ ul.nestable-view,.nestable-view ul{
 
 .nestable-view li {
 	list-style:none;
+	background-image: -webkit-linear-gradient(top, #333, #222);
+	color:white;
+	height:30px;
+	padding: 10px 0 0px 10px;
 }
-
-.nestable-view li:hover {
-	background-color: yellow;
-}
-
 ```
 
