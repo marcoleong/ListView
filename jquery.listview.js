@@ -1,5 +1,5 @@
 /**
- * jQuery ListView plugin v1.0 beta
+ * jQuery ListView plugin v1.0 beta (not even there yet !)
  *
  * Copyright 2012, Marco Leong
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -149,8 +149,24 @@ $.fn.extend({
 	},
 
 	findNode: function(value){
-		var items = $(this).find("ul > li:contains('"+value+"')").not(".parent-btn").not('ul');
 		var _this = this;
+
+		// var items = $(this).find("li:contains('"+value+"')").not(".parent-btn").not('ul');
+		var items = $(this).find("li").not(".parent-btn").not('ul');
+
+		var isMatch = function(value, node) {
+			value = value.toLowerCase();
+			return _this.getTextInNode(node).toLowerCase().indexOf(value) != -1;
+			// return node.innerHTML.toLowerCase().indexOf(value) > 0;
+		};
+		// filter with regular expression
+		var filtered = new Array(0);
+		for (var i = items.length - 1; i >= 0; i--) {
+			if(isMatch(value, items[i])) {
+				filtered.push(items[i]);
+			}
+		}
+		items = filtered;
 		var nodes_value = $.map($(items), function(item){
 			return _this.getTextInNode(item);
 		});
@@ -159,4 +175,4 @@ $.fn.extend({
 	getTextInNode : function(elem) {
 		return $.trim(elem.firstChild.nodeValue);
 	}
-})(jQuery);
+})($);
