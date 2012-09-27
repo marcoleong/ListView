@@ -12,13 +12,12 @@
 			searchable: true
 		},
 
-		listView: function() {
-			this.initialize();
+		listView: function(options) {
+			this.initialize(options);
 		},
 
 		initialize: function(options){
-
-			this.settings = (options) ? jQuery.extend(this.settings, options): this.settings;
+			this.settings = (options) ? (this.settings || options): this.settings;
 
 			$(this).wrap('<div class="nestable-container"></div>');
 			//initialize left property

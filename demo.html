@@ -6,40 +6,44 @@
 	<script type="text/javascript" src="jquery.listview.js"></script>
 </head>
 <body>
-	<ul class="nestable-view">
-		<li>
-			Campus 1
-			<ul>
-				<li>Block A
-					<ul>
-						<li>Room A1</li>
-						<li>Room A2</li>
-						<li>Room A3</li>
-					</ul>
-				</li>
-				<li>Block B
-					<ul>
-						<li>Room B1</li>
-						<li>Room B2</li>
-						<li>Room B3</li>
-					</ul>
-				</li>
-			</ul>
-		</li>
-		<li>
-			Campus 2
-			<ul>
-				<li>Block C
-					<ul>
-						<li>Room C1</li>
-						<li>Room C2</li>
-						<li>Room C3</li>
-					</ul>
-				</li>
-				<li>Block D</li>
-			</ul>
-		</li>
-	</ul>
+	<div class="container">
+		<h1>List View Demo page</h1>
+		<p>jQuery plugin allowing to use ul and li element to have similar effect of iOS ListView</p>
+		<ul class="nestable-view">
+			<li>
+				Campus 1
+				<ul>
+					<li>Block A
+						<ul>
+							<li>Room A1</li>
+							<li>Room A2</li>
+							<li>Room A3</li>
+						</ul>
+					</li>
+					<li>Block B
+						<ul>
+							<li>Room B1</li>
+							<li>Room B2</li>
+							<li>Room B3</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Campus 2
+				<ul>
+					<li>Block C
+						<ul>
+							<li>Room C1</li>
+							<li>Room C2</li>
+							<li>Room C3</li>
+						</ul>
+					</li>
+					<li>Block D</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
 	<style type="text/css">
 		.nestable-container {
 			overflow:hidden;
@@ -47,6 +51,9 @@
 			height:300px;
 			position:relative;
 			z-index:0;
+
+			border: 2px solid #333;
+
 		}
 		.nestable-view {
 			width:200px;
