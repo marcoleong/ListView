@@ -36,7 +36,6 @@
 					event.preventDefault();
 				}
 				var results = that.findNode($(this).val());
-				// console.log(results);
 
 				$('.nestable-view').hide();
 				// $(this).
@@ -45,16 +44,16 @@
 				}
 
 				var resultsItem = $.map(results, function(item){
-					return "<li>"+item+"</li>";
+					return "<li style='display:block'><a href='#'>"+item+"</a></li>";
 				});
 				// console.log(resultsItem);
 				$("#listview-search-results").html('');
 				$.each(resultsItem, function(i,el){
-					$("#listview-search-results").append(el);
+					$("#listview-search-results").append($(el));
 				});
 				$("#listview-search-results > li").each(function(i,el){
-					$(el).click(function(e){
-						var value = that.getTextInNode(el);
+					$(el).children("a").click(function(e){
+						var value = that.getTextInNode(this);
 						$("#listview-selected-hidden-field").val(value);
 						e.preventDefault();
 					});
@@ -102,9 +101,8 @@
 				$(ele).each(function(i,ele){
 					if($(ele).data('level') !== 0) {
 						$(ele).children().first().before('<li class="parent-btn">Parent</li>');
-						var pbtn = $(ele).children().first();
 
-					
+						var pbtn = $(ele).children().first();
 						$(pbtn).click(function(e){
 							$(root).animate({'left':'+=100%'});
 							$(pbtn).parent().css({'z-index': '1'});
